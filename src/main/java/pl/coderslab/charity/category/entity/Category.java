@@ -2,6 +2,7 @@ package pl.coderslab.charity.category.entity;
 
 
 import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
