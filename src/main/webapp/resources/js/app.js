@@ -173,23 +173,27 @@ document.addEventListener("DOMContentLoaded", function () {
     if (form !== null) {
         new FormSteps(form);
     }
+
     const button = document.querySelector("#toConfButton");
-    button.addEventListener("click", function () {
-            document.getElementById('confPickUpCity').innerText = document.getElementById('city').value;
-            document.getElementById('confPickUpStreet').innerText = document.getElementById('street').value;
-            document.getElementById('confPickUpZipCode').innerText = document.getElementById('zipCode').value;
-            document.getElementById('confPickUpPhoneNumber').innerText = document.getElementById('phoneNumber').value;
-            document.getElementById('confPickUpComment').innerText = document.getElementById('pickUpComment').value;
-            document.getElementById('confPickUpDate').innerText = document.getElementById('pickUpDate').value;
-            document.getElementById('confPickUpTime').innerText = document.getElementById('pickUpTime').value;
-            document.getElementById('confQuantity').innerText = document.getElementById('quantity').value;
-            const select = document.getElementById('institution');
-            document.getElementById('confInstitution').innerText = 'Dla fundacji ' + select.options[select.selectedIndex].innerText
-            const checkboxes = document.querySelectorAll('input[type=checkbox][name="category"]:checked');
-            checkboxes.forEach((checkbox) => {
-                document.getElementById('confQuantity').innerText = document.getElementById('confQuantity').innerText + " Worki " + checkbox.value;
-            });
-        }
-    )
+    if(button){
+        button.addEventListener("click", function () {
+                document.getElementById('confPickUpCity').innerText = document.getElementById('city').value;
+                document.getElementById('confPickUpStreet').innerText = document.getElementById('street').value;
+                document.getElementById('confPickUpZipCode').innerText = document.getElementById('zipCode').value;
+                document.getElementById('confPickUpPhoneNumber').innerText = document.getElementById('phoneNumber').value;
+                document.getElementById('confPickUpComment').innerText = document.getElementById('pickUpComment').value;
+                document.getElementById('confPickUpDate').innerText = document.getElementById('pickUpDate').value;
+                document.getElementById('confPickUpTime').innerText = document.getElementById('pickUpTime').value;
+                document.getElementById('confQuantity').innerText = document.getElementById('quantity').value;
+                const select = document.getElementById('institution');
+                document.getElementById('confInstitution').innerText = 'Dla fundacji ' + select.options[select.selectedIndex].innerText
+                const checkboxes = document.querySelectorAll('input[type=checkbox][name="category"]:checked');
+                checkboxes.forEach((checkbox) => {
+                    document.getElementById('confQuantity').innerText = document.getElementById('confQuantity').innerText + " Worki " + checkbox.value;
+                });
+            }
+        )
+    }
+
 
 });
