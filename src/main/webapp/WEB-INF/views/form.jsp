@@ -43,7 +43,7 @@
                     <%--                </div>--%>
                     <%--              </c:forEach>--%>
 
-                <form:checkboxes element="div" itemLabel="name"  itemValue="name" path="category"
+                <form:checkboxes element="div" itemLabel="name" path="category"
                                  items="${categories}" id="categories"/>
 
                 <div class="form-group form-group--buttons">
