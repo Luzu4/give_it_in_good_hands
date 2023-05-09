@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const button = document.querySelector("#toConfButton");
-    if(button){
+    if (button) {
         button.addEventListener("click", function () {
                 document.getElementById('confPickUpCity').innerText = document.getElementById('city').value;
                 document.getElementById('confPickUpStreet').innerText = document.getElementById('street').value;
@@ -185,11 +185,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById('confPickUpDate').innerText = document.getElementById('pickUpDate').value;
                 document.getElementById('confPickUpTime').innerText = document.getElementById('pickUpTime').value;
                 document.getElementById('confQuantity').innerText = document.getElementById('quantity').value;
-                const select = document.getElementById('institution');
-                document.getElementById('confInstitution').innerText = 'Dla fundacji ' + select.options[select.selectedIndex].innerText
-                const checkboxes = document.querySelectorAll('input[type=checkbox][name="category"]:checked');
+                const select = document.querySelector('input[name="institution"]:checked');
+                let selectTitle = select.parentElement.querySelector(".title");
+                document.getElementById('confInstitution').innerText = ' ' + selectTitle.innerHTML;
+
+                const checkboxes = document.querySelectorAll('input[type=checkbox][name="categories"]:checked');
                 checkboxes.forEach((checkbox) => {
-                    document.getElementById('confQuantity').innerText = document.getElementById('confQuantity').innerText + " Worki " + checkbox.value;
+                    document.getElementById('confQuantity').innerText = document.getElementById('confQuantity').innerText + " " + checkbox.parentElement.querySelector(".description").innerHTML;
                 });
             }
         )

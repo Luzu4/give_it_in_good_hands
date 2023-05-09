@@ -31,6 +31,7 @@ public class DonationController {
     @PostMapping("/donate")
     public String createDonation(Donation donation) {
         System.out.println("donation = " + donation);
+        System.out.println("___________________________________________________________");
         donationService.saveNewDonation(donation);
         return "form-confirmation";
     }

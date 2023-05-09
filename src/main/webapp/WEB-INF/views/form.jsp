@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="headerShorter.jsp"/>
 
 <section class="form--steps">
     <div class="form--steps-instructions">
@@ -28,23 +28,22 @@
 
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
-
         <form:form method="post" modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
-                    <%--              <c:forEach items="${categories}" var="category">--%>
-                    <%--                <div class="form-group form-group--checkbox">--%>
-                    <%--                  <label>--%>
-                    <%--                    <form:checkbox path="category" value="${category}" />--%>
-                    <%--                    <span class="checkbox"></span>--%>
-                    <%--                    <span class="description">${category.name}</span>--%>
-                    <%--                  </label>--%>
-                    <%--                </div>--%>
-                    <%--              </c:forEach>--%>
+                <c:forEach items="${categories}" var="category">
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input type="checkbox" name="categories" value="${category.id}"/>
+                            <span class="checkbox"></span>
+                            <span class="description"
+                            >${category.name}</span
+                            >
+                        </label>
+                    </div>
+                </c:forEach>
 
-                <form:checkboxes element="div" itemLabel="name" path="category"
-                                 items="${categories}" id="categories"/>
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn next-step">Dalej</button>
@@ -70,7 +69,20 @@
             <!-- STEP 4 -->
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3>
-                <form:select path="institution" itemLabel="name" items="${institutions}" id="institution"/>
+                <c:forEach items="${institutions}" var="institution">
+                    <div class="form-group form-group--checkbox">
+                        <label>
+                            <input type="radio" name="institution" value="${institution.id}"/>
+                            <span class="checkbox radio"></span>
+                            <span class="description">
+                              <div class="title">Fundacja ${institution.name}</div>
+                              <div class="subtitle">
+                                Cel i misja: ${institution.description}
+                              </div>
+                            </span>
+                        </label>
+                    </div>
+                </c:forEach>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
                     <button type="button" class="btn next-step">Dalej</button>

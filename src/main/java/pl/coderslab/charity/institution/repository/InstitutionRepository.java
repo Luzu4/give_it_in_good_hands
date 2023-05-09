@@ -7,4 +7,6 @@ import pl.coderslab.charity.institution.entity.Institution;
 @Repository
 public interface InstitutionRepository extends JpaRepository<Institution, Long> {
 
+
+
 }

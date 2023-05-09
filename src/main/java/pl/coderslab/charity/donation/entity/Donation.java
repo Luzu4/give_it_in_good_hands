@@ -8,7 +8,7 @@ import pl.coderslab.charity.institution.entity.Institution;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -20,7 +20,7 @@ public class Donation {
     private Integer quantity;
 
     @ManyToMany
-    private List<Category> category;
+    private Set<Category> categories;
     @ManyToOne
     private Institution institution;
 
