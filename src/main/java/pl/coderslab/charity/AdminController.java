@@ -23,61 +23,61 @@ public class AdminController {
     private final RoleService roleService;
 
     @GetMapping
-    public String adminHomePage(){
+    public String adminHomePage() {
         return "/admin/index";
     }
 
     @GetMapping("/institutions")
-    public String institutionsTable(Model model){
+    public String institutionsTable(Model model) {
         model.addAttribute("institutionList", institutionService.findAllInstitutions());
         return "/admin/institutionsTable";
     }
 
     @GetMapping("/institutions/create")
-    public String createInstitutionForm(Model model){
+    public String createInstitutionForm(Model model) {
         model.addAttribute("institution", new Institution());
         return "/admin/createInstitutionForm";
     }
 
     @PostMapping("/institutions/create")
-    public String createInstitution(Institution institution){
+    public String createInstitution(Institution institution) {
         institutionService.saveInstitution(institution);
         return "/admin/createInstitutionForm";
     }
 
-    @RequestMapping ("/institutions/remove/{id}")
-    public String removeInstitution(@PathVariable Long id){
+    @RequestMapping("/institutions/remove/{id}")
+    public String removeInstitution(@PathVariable Long id) {
         institutionService.remove(id);
         return "redirect:/admin/institutions";
     }
 
     @GetMapping("/institutions/edit/{id}")
-    public String updateInstitutionForm(@PathVariable Long id, Model model){
-        model.addAttribute("institution",institutionService.getById(id));
+    public String updateInstitutionForm(@PathVariable Long id, Model model) {
+        model.addAttribute("institution", institutionService.getById(id));
         return "/admin/createInstitutionForm";
     }
 
     @PostMapping("/institutions/edit/{id}")
-    public String updateInstitution(Institution institution){
+    public String updateInstitution(Institution institution) {
         institutionService.saveInstitution(institution);
         return "redirect:/admin/institutions";
     }
 
     @GetMapping("/users")
-    public String usersTable(Model model){
+    public String usersTable(Model model) {
         model.addAttribute("userList", userService.findAllUsers());
         return "/admin/usersTable";
     }
 
     @GetMapping("/users/edit/{id}")
-    public String updateUserForm(@PathVariable Long id, Model model){
-        model.addAttribute("user",userService.findByUserId(id));
+    public String updateUserForm(@PathVariable Long id, Model model) {
+        model.addAttribute("user", userService.findByUserId(id));
         model.addAttribute("roles", roleService.findAll());
         return "/admin/editUserForm";
     }
 
     @PostMapping("/users/edit/{id}")
-    public String updateUser(@PathVariable Long id, User user){
+    public String updateUser(@PathVariable Long id, User user) {
         System.out.println("user = " + user);
         System.out.println("____________________________________");
         user.setPassword(userService.findByUserId(id).getPassword());
@@ -85,8 +85,8 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @RequestMapping ("/users/remove/{id}")
-    public String removeUser(@PathVariable Long id){
+    @RequestMapping("/users/remove/{id}")
+    public String removeUser(@PathVariable Long id) {
         userService.remove(id);
         return "redirect:/admin/users";
     }
