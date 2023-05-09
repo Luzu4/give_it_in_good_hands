@@ -1,5 +1,6 @@
 package pl.coderslab.charity.user.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,19 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
-
-    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-                           BCryptPasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-    }
 
     @Override
     public User findByUserName(String username) {
@@ -56,6 +50,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
+        if(user.getPassword().isEmpty()){
+            Optional<User> userToEdit = userRepository.findById(user.getId());
+            userToEdit.ifPresent(value -> user.setPassword(value.getPassword()));
+        }else{
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        if(user.getEnabled() == null){
+            user.setEnabled(1);
+        }
         return userRepository.save(user);
     }
 

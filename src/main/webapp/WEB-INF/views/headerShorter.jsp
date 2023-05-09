@@ -21,6 +21,7 @@
                     <input class="btn btn--small btn--without-border" type="submit" value="Wyloguj">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
+                <a class="btn btn--small btn--without-border" href="/users/edit/${id}">Edytuj Dane</a>
             </sec:authorize>
             <sec:authorize access="isAnonymous()">
                 <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
