@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user) {
-        if(user.getPassword().isEmpty()){
+        if(user.getPassword()==null){
             Optional<User> userToEdit = userRepository.findById(user.getId());
             userToEdit.ifPresent(value -> user.setPassword(value.getPassword()));
         }else{

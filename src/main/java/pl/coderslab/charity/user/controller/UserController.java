@@ -23,9 +23,11 @@ public class UserController {
 
     @ModelAttribute("id")
     public Long userId(@AuthenticationPrincipal UserDetails user){
-        return userService.findByUserName(user.getUsername()).getId();
+        if(user != null){
+            return userService.findByUserName(user.getUsername()).getId();
+        }
+            return null;
     }
-
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -35,7 +37,7 @@ public class UserController {
     @PostMapping("/register")
     public String createUser(User user) {
         userService.saveUser(user);
-        return "index";
+        return "login";
     }
 
     @GetMapping("/users/edit/{id}")
