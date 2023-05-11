@@ -35,11 +35,10 @@
                 <c:forEach items="${categories}" var="category">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="checkbox" name="categories" value="${category.id}"/>
+                            <form:checkbox path="categories" value="${category.id}"/>
+<%--                            <input type="checkbox" name="categories" value="${category.id}"/>--%>
                             <span class="checkbox"></span>
-                            <span class="description"
-                            >${category.name}</span
-                            >
+                            <span class="description">${category.name}</span>
                         </label>
                     </div>
                 </c:forEach>
@@ -57,7 +56,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input path="quantity" id="quantity"/>
+                        <form:input path="quantity" type="number"/>
                     </label>
                 </div>
 
@@ -72,7 +71,7 @@
                 <c:forEach items="${institutions}" var="institution">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="radio" name="institution" value="${institution.id}"/>
+                            <form:radiobutton path="institution" value="${institution.id}"/>
                             <span class="checkbox radio"></span>
                             <span class="description">
                               <div class="title">Fundacja ${institution.name}</div>
@@ -97,22 +96,22 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <form:input path="street" id="street"/> </label>
+                            <label> Ulica <form:input path="street"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <form:input path="city" id="city"/> </label>
+                            <label> Miasto <form:input path="city"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <form:input path="zipCode" id="zipCode"/>
+                                Kod pocztowy <form:input path="zipCode"/>
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input path="phoneNumber" id="phoneNumber"/>
+                                Numer telefonu <form:input path="phoneNumber"/>
                             </label>
                         </div>
                     </div>
@@ -120,17 +119,17 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input type="date" path="pickUpDate" id="pickUpDate"/> </label>
+                            <label> Data <form:input type="date" path="pickUpDate"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <form:input type="time" path="pickUpTime" id="pickUpTime"/> </label>
+                            <label> Godzina <form:input type="time" path="pickUpTime"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <form:textarea path="pickUpComment" id="pickUpComment"/>
+                                <form:textarea path="pickUpComment"/>
                             </label>
                         </div>
                     </div>

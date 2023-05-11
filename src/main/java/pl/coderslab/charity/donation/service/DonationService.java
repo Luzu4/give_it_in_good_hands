@@ -13,7 +13,7 @@ public class DonationService {
 
 
     public Long getSumOfQuantity() {
-        return donationRepository.getSumOfQuantity();
+        return donationRepository.getSumOfQuantity().orElse(0L);
     }
 
     public Long getCountOfGifts() {

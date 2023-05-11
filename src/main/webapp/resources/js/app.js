@@ -192,7 +192,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const checkboxes = document.querySelectorAll('input[type=checkbox][name="categories"]:checked');
                 checkboxes.forEach((checkbox) => {
                     document.getElementById('confQuantity').innerText = document.getElementById('confQuantity').innerText + " " + checkbox.parentElement.querySelector(".description").innerHTML;
-                });
+                }
+
+                );
             }
         )
     }
