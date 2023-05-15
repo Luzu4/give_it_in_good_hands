@@ -2,6 +2,7 @@ package pl.coderslab.charity;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -77,7 +78,7 @@ public class AdminController {
     }
 
     @PostMapping("/users/edit/{id}")
-    public String updateUser(@PathVariable Long id, User user) {
+    public String updateUser(@PathVariable Long id, User user, @AuthenticationPrincipal User user1)  {
         System.out.println("user = " + user);
         System.out.println("____________________________________");
         user.setPassword(userService.findByUserId(id).getPassword());

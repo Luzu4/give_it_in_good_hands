@@ -153,6 +153,72 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // TODO: Validation
 
+            if(this.currentStep === 1){
+                console.log(document.forms["donationForm"]["categories"])
+                if(!document.forms["donationForm"]["categories"]){
+                    alert("categories cannot be null!!");
+                    this.currentStep--;
+                    return false;
+                }
+            }
+            if(this.currentStep === 3){
+                var quantity = document.forms["donationForm"]["quantity"].value;
+                if(quantity== null || quantity ===""){
+                    alert("quantity cannot be null!!");
+                    this.currentStep--;
+                    return false;
+                }
+            }
+            var street = document.forms["donationForm"]["street"].value;
+            if(this.currentStep === 5){
+                if(street==null || street===""){
+                    this.currentStep--;
+                    alert("Street cannot be empty!!");
+                    return false;
+                }
+            }
+            var city = document.forms["donationForm"]["city"].value;
+            if(this.currentStep === 5){
+                if(city==null || city===""){
+                    this.currentStep--;
+                    alert("City cannot be empty!!");
+                    return false;
+                }
+            }
+            var zipCode = document.forms["donationForm"]["zipCode"].value;
+            if(this.currentStep === 5){
+                if(zipCode==null || zipCode===""){
+                    this.currentStep--;
+                    alert("zipCode cannot be empty!!");
+                    return false;
+                }
+            }
+            var pickUpDate = document.forms["donationForm"]["pickUpDate"].value;
+            if(this.currentStep === 5){
+                if(pickUpDate==null || pickUpDate===""){
+                    this.currentStep--;
+                    alert("pickUpDate cannot be empty!!");
+                    return false;
+                }
+            }
+            var pickUpTime = document.forms["donationForm"]["pickUpTime"].value;
+            if(this.currentStep === 5){
+                if(pickUpTime==null || pickUpTime===""){
+                    this.currentStep--;
+                    alert("pickUpTime cannot be empty!!");
+                    return false;
+                }
+            }
+            var phoneNumber = document.forms["donationForm"]["phoneNumber"].value;
+            if(this.currentStep === 5){
+                if(phoneNumber==null || phoneNumber==="" || phoneNumber.length<9){
+                    this.currentStep--;
+                    alert("phoneNumber cannot be empty and need to have 9digits!!");
+                    return false;
+                }
+            }
+
+
             this.slides.forEach(slide => {
                 slide.classList.remove("active");
 
@@ -177,6 +243,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const button = document.querySelector("#toConfButton");
     if (button) {
         button.addEventListener("click", function () {
+            var street = document.forms["donationForm"]["street"].value;
+            if(street==null || street===""){
+                alert("Street cannot be empty!!");
+                return false;
+            }
                 document.getElementById('confPickUpCity').innerText = document.getElementById('city').value;
                 document.getElementById('confPickUpStreet').innerText = document.getElementById('street').value;
                 document.getElementById('confPickUpZipCode').innerText = document.getElementById('zipCode').value;
@@ -186,8 +257,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.getElementById('confPickUpTime').innerText = document.getElementById('pickUpTime').value;
                 document.getElementById('confQuantity').innerText = document.getElementById('quantity').value;
                 const select = document.querySelector('input[name="institution"]:checked');
-                let selectTitle = select.parentElement.querySelector(".title");
-                document.getElementById('confInstitution').innerText = ' ' + selectTitle.innerHTML;
+                if(select){
+                    let selectTitle = select.parentElement.querySelector(".title");
+                    document.getElementById('confInstitution').innerText = ' ' + selectTitle.innerHTML;
+                }else{
+                    document.getElementById('confInstitution').innerText = ' ' + "I don't care who will get it";
+                }
 
                 const checkboxes = document.querySelectorAll('input[type=checkbox][name="categories"]:checked');
                 checkboxes.forEach((checkbox) => {
@@ -195,6 +270,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             }
         )
+    }
+
+    function formValidation(){
+        var street = document.forms["donationForm"]["street"].value;
+        if(street==null || street===""){
+            alert("Street cannot be empty!!");
+            return false;
+        }
     }
 
 

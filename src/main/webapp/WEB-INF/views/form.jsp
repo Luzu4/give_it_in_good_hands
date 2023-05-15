@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ page errorPage="error.jsp" %>
 <jsp:include page="headerShorter.jsp"/>
 
 <section class="form--steps">
@@ -28,7 +28,7 @@
 
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
-        <form:form method="post" modelAttribute="donation">
+        <form:form onsubmit="console.log('Siema')" name="donationForm" method="post" modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
@@ -57,7 +57,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <form:input path="quantity" id="quantity"/>
+                        <form:input type="number" path="quantity" id="quantity"/>
                     </label>
                 </div>
 
@@ -112,7 +112,7 @@
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <form:input path="phoneNumber" id="phoneNumber"/>
+                                Numer telefonu <form:input type="number" path="phoneNumber" id="phoneNumber"/>
                             </label>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <form:input type="date" path="pickUpDate" id="pickUpDate"/> </label>
+                            <label> Data <form:input type="date" path="pickUpDate" id="pickUpDate" min="${todayDate}"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
