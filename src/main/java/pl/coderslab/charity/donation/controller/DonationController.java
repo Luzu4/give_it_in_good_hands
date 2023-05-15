@@ -1,6 +1,7 @@
 package pl.coderslab.charity.donation.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class DonationController {
     private final CategoryService categoryService;
     private final InstitutionService institutionService;
 
+    @Secured("ROLE_USER")
     @GetMapping("/donate")
     public String donateForm(Model model) {
         Date todayDate = new Date();

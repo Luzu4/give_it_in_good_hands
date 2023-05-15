@@ -17,6 +17,10 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <sec:authorize access="isAuthenticated()">
+                <form action="<c:url value="/donations/donate"/>" method="get">
+                    <input class="btn btn--small btn--without-border" type="submit" value="Donate">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
                 <form action="<c:url value="/logout"/>" method="post">
                     <input class="btn btn--small btn--without-border" type="submit" value="Wyloguj">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
