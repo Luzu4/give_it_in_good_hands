@@ -3,7 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page errorPage="error.jsp" %>
 <jsp:include page="headerShorter.jsp"/>
 
 <section class="form--steps">
@@ -28,7 +27,7 @@
 
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
-        <form:form onsubmit="console.log('Siema')" name="donationForm" method="post" modelAttribute="donation">
+        <form:form name="donationForm" method="post" modelAttribute="donation">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>

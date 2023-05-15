@@ -78,9 +78,7 @@ public class AdminController {
     }
 
     @PostMapping("/users/edit/{id}")
-    public String updateUser(@PathVariable Long id, User user, @AuthenticationPrincipal User user1)  {
-        System.out.println("user = " + user);
-        System.out.println("____________________________________");
+    public String updateUser(@PathVariable Long id, User user)  {
         user.setPassword(userService.findByUserId(id).getPassword());
         userService.updateUser(user);
         return "redirect:/admin/users";

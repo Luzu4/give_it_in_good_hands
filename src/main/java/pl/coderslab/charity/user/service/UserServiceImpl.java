@@ -1,6 +1,7 @@
 package pl.coderslab.charity.user.service;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.role.entity.Role;
@@ -63,5 +64,18 @@ public class UserServiceImpl implements UserService {
     public HttpStatus remove(Long id) {
                 userRepository.deleteById(id);
         return HttpStatus.OK;
+    }
+
+    @Override
+    public User editUserData(User user, Authentication authentication){
+        User userToEdit = userRepository.findByUsername(authentication.getName());
+        userToEdit.setFirstname(user.getFirstname());
+        userToEdit.setSurname(user.getSurname());
+        userToEdit.setUsername(user.getUsername());
+        if(user.getPassword()!=null && !user.getPassword().equals(userToEdit.getPassword())){
+            userToEdit.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        return userRepository.save(userToEdit);
+
     }
 }

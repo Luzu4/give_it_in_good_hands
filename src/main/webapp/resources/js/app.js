@@ -154,7 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // TODO: Validation
 
             if (this.currentStep === 1) {
-                console.log(document.forms["donationForm"]["categories"])
                 if (!document.forms["donationForm"]["categories"]) {
                     alert("categories cannot be null!!");
                     this.currentStep--;
