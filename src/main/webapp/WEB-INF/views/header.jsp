@@ -17,6 +17,9 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <sec:authorize access="isAuthenticated()">
+                <form action="<c:url value="/user/donations"/>" method="get">
+                    <input class="btn btn--small btn--without-border" type="submit" value="Donations">
+                </form>
                 <form action="<c:url value="/donations/donate"/>" method="get">
                     <input class="btn btn--small btn--without-border" type="submit" value="Donate">
                 </form>

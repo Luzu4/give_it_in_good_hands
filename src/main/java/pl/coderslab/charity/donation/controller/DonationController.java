@@ -2,9 +2,11 @@ package pl.coderslab.charity.donation.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.category.service.CategoryService;
@@ -37,9 +39,15 @@ public class DonationController {
     }
 
     @PostMapping("/donate")
-    public String createDonation(Donation donation) {
-        donationService.saveNewDonation(donation);
+    public String createDonation(Donation donation, Authentication authentication) {
+        donationService.saveNewDonation(donation, authentication);
         return "form-confirmation";
+    }
+
+    @GetMapping("/{id}")
+    public String donateInformation(@PathVariable("id") Long id, Model model){
+        model.addAttribute("donation", donationService.findDonationById(id));
+        return "/userPanel/donationInformation";
     }
 
 
