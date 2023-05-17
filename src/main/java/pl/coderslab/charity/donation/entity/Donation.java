@@ -9,10 +9,7 @@ import pl.coderslab.charity.category.entity.Category;
 import pl.coderslab.charity.institution.entity.Institution;
 
 import javax.persistence.*;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
@@ -26,11 +23,14 @@ public class Donation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NonNull
+    @Positive
     private Integer quantity;
 
     @ManyToMany
+    @NotEmpty
     private Set<Category> categories;
     @ManyToOne
+    @NotNull
     private Institution institution;
 
     @NotBlank
@@ -40,9 +40,13 @@ public class Donation {
     @NotBlank
     private String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
+    @Future
     private LocalDate pickUpDate;
+    @NotNull
     private LocalTime pickUpTime;
     private String pickUpComment;
     @Pattern(regexp="(^$|[0-9]{9})")
+    @NotBlank
     private String phoneNumber;
 }

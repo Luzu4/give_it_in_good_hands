@@ -45,9 +45,14 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<User> findAllUsers() {
+    public List<User> findAllUsers(Optional<Boolean> isAdmin) {
+        if(isAdmin.isPresent()){
+            Role role = roleRepository.findByName("ROLE_ADMIN");
+            return isAdmin.get() ? userRepository.findAllByRolesContains(role) : userRepository.findAll() ;
+        }
         return userRepository.findAll();
     }
+
 
     @Override
     public User findByUserId(Long id) {

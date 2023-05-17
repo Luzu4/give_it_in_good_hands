@@ -1,6 +1,7 @@
 package pl.coderslab.charity;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import pl.coderslab.charity.role.repository.RoleRepository;
 import pl.coderslab.charity.role.service.RoleService;
 import pl.coderslab.charity.user.entity.User;
 import pl.coderslab.charity.user.service.UserServiceImpl;
+
+import java.util.Optional;
 
 @Secured("ROLE_ADMIN")
 @RequestMapping("/admin")
@@ -65,8 +68,8 @@ public class AdminController {
     }
 
     @GetMapping("/users")
-    public String usersTable(Model model) {
-        model.addAttribute("userList", userService.findAllUsers());
+    public String usersTable(Model model, @RequestParam("isAdmin") Optional<Boolean> isAdmin) {
+        model.addAttribute("userList", userService.findAllUsers(isAdmin));
         return "/admin/usersTable";
     }
 
